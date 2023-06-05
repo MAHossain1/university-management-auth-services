@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\errors\\.4447981fc00261042254c393d260d85430c31475-audit.json",
+    "files": [
+        {
+            "date": 1685708997179,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-02-06-18-error.log",
+            "hash": "19ae447ed16f1e1e149ed08bc83ef49d60a5d98a953d8d4132da2ae4696dabf0"
+        }
+    ],
+    "hashType": "sha256"
+}
