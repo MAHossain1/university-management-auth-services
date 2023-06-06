@@ -39,6 +39,21 @@
             "date": 1685978766352,
             "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-05-06-21-error.log",
             "hash": "19b0e5fb0107b5cd955f1900370c54dad3abdfced159b6ab2c7e80425119f28e"
+        },
+        {
+            "date": 1686008112150,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-06-06-05-error.log",
+            "hash": "29d93c7f2a5d8656ec0c4274f670ad8fb237858a03af7be3ac4499e35a207714"
+        },
+        {
+            "date": 1686009698360,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-06-06-06-error.log",
+            "hash": "b49eb7a7afc3cc5e5f92e52b20f7fd1a9b73ede4109bd63a1db1d3a2e51e944f"
+        },
+        {
+            "date": 1686014895051,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-06-06-07-error.log",
+            "hash": "2bb57e0a1068ec40d87741429b07e82663d7946f8701baaba22bd2680c0f52ec"
         }
     ],
     "hashType": "sha256"
