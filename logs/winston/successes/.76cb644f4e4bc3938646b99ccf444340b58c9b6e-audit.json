@@ -54,6 +54,51 @@
             "date": 1686014895044,
             "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\successes\\phu-2023-06-06-07-success.log",
             "hash": "c48114bd873e101603088d993441ce0b85e7d4ddcaed61b61d22be09dacb0df4"
+        },
+        {
+            "date": 1686043776124,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\successes\\phu-2023-06-06-15-success.log",
+            "hash": "efe0665a1fa58e6ee7a2f3dace924cfbe62ed5d84ca2289cfafd898a9fc3e133"
+        },
+        {
+            "date": 1686047064612,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\successes\\phu-2023-06-06-16-success.log",
+            "hash": "65d933061a2a99495082aaac322c6eabec1876ce932872eb571e2eca62007a34"
+        },
+        {
+            "date": 1686052611181,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\successes\\phu-2023-06-06-17-success.log",
+            "hash": "5071eb485f34d44ce40857b0ef0c6344d28d9dea201590e215b10f593b10af08"
+        },
+        {
+            "date": 1686053788378,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\successes\\phu-2023-06-06-18-success.log",
+            "hash": "1e2484a113dacfdd7e1337b256fee08c0421f0f5098bceb1be37feab73948906"
+        },
+        {
+            "date": 1686102692035,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\successes\\phu-2023-07-06-07-success.log",
+            "hash": "85f04adfbb018235a05882e97f9a1afb491df080eeec9392fdd169072b377934"
+        },
+        {
+            "date": 1686117081388,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\successes\\phu-2023-07-06-11-success.log",
+            "hash": "4f706bc39e45efa2f440a34f4619b5daa0f3e281b6a6f9a78dff3daf05fcd8ba"
+        },
+        {
+            "date": 1686118359198,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\successes\\phu-2023-07-06-12-success.log",
+            "hash": "b48f631f6b750657c9c9f6c950dd57dedb2b7f7f6dcd6c79ea133eee1255b113"
+        },
+        {
+            "date": 1686125891740,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\successes\\phu-2023-07-06-14-success.log",
+            "hash": "50f0592243a7d145f7e3e3531fc4b5a5bfa086f947f4c1051731c82bcaf8bcf9"
+        },
+        {
+            "date": 1686132523536,
+            "name": "C:\\apollo\\final-project\\university-management-auth-service\\logs\\winston\\successes\\phu-2023-07-06-16-success.log",
+            "hash": "6bbe6b674351914faaccf1155c4a13c4197309d9a90acb0486fec1b8c260f717"
         }
     ],
     "hashType": "sha256"
