@@ -10,14 +10,13 @@ const createSemester: RequestHandler = catchAsync(
     const result = await AcademicSemesterService.createSemester(
       academicSemesterData
     );
-    next();
-
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: 'Academic Semester Created successfully',
       data: result,
     });
+    next();
 
     // res.status(200).json({
     //   success: true,
