@@ -3,6 +3,9 @@ import cors from 'cors';
 import globalErrorHandler from './app/middlewares/globalErrorHandlers';
 import routes from './app/routes';
 import httpStatus from 'http-status';
+import // generateFacultyId,
+// generateStudentId,
+'./app/modules/user/user.utlis';
 // import ApiError from './errors/ApiError'
 const app: Application = express();
 
@@ -38,5 +41,12 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   });
   next();
 });
+
+// const testId = async () => {
+//   const testId = await generateFacultyId();
+//   console.log(testId);
+// };
+
+// testId();
 
 export default app;

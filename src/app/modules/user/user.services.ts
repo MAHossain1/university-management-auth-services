@@ -1,26 +1,86 @@
+import mongoose from 'mongoose';
 import config from '../../../config/index';
 import ApiError from '../../../errors/ApiError';
+import { AcademicSemester } from '../academicSemester/academicSemester.model';
+import { IStudent } from '../student/student.interface';
 import { IUser } from './user.interface';
 import { User } from './user.model';
-import { generateUserId } from './user.utlis';
+import { generateStudentId } from './user.utlis';
+import { Student } from '../student/student.model';
+import httpStatus from 'http-status';
 
-const createUser = async (user: IUser) => {
-  // auto generated incremental id
-  const id = await generateUserId();
-  user.id = id;
-
+const createStudent = async (
+  student: IStudent,
+  user: IUser
+): Promise<IUser | null> => {
   // Default password
   if (!user.password) {
-    user.password = config.default_user_pass as string;
+    user.password = config.default_student_pass as string;
   }
 
-  const createdUser = await User.create(user);
-  if (!createUser) {
-    throw new ApiError(400, 'failed to create user');
+  //Set role
+  user.role = 'student';
+
+  const academicSemester = await AcademicSemester.findById(
+    student.academicSemester
+  );
+
+  // Generate student id
+  let newUserAllData = null;
+  const session = await mongoose.startSession();
+  try {
+    session.startTransaction();
+    const id = await generateStudentId(academicSemester);
+    user.id = id;
+    student.id = id;
+
+    // const newStudent = await Student.create([student, { session }]);
+    const newStudent = await Student.create([student], { session });
+
+    if (!newStudent.length) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create student');
+    }
+
+    // set student _id into user
+    user.student = newStudent[0]._id;
+
+    const newUser = await User.create([user], { session });
+
+    if (!newUser.length) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create user');
+    }
+    newUserAllData = newUser[0];
+
+    await session.commitTransaction();
+
+    await session.endSession();
+  } catch (error) {
+    await session.abortTransaction();
+    await session.endSession();
+    throw error;
   }
-  return createdUser;
+  // User --> student --> academicSemester , academicDepartment, academicFaculty
+
+  if (newUserAllData) {
+    newUserAllData = await User.findOne({ id: newUserAllData.id }).populate({
+      path: 'student',
+      populate: [
+        {
+          path: 'academicSemester',
+        },
+        {
+          path: 'academicDepartment',
+        },
+        {
+          path: 'academicFaculty',
+        },
+      ],
+    });
+  }
+
+  return newUserAllData;
 };
 
 export const UserService = {
-  createUser,
+  createStudent,
 };
