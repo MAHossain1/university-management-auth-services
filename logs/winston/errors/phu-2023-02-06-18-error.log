@@ -1,2 +1,0 @@
-Fri Jun 02 2023, 18:29:57 [Arman_dev] error: Failed to connect Db The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
-Fri Jun 02 2023, 18:47:24 [Arman_dev] error: Failed to connect Db The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
