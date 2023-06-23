@@ -8,8 +8,10 @@ import // generateFacultyId,
 './app/modules/user/user.utlis';
 // import ApiError from './errors/ApiError'
 const app: Application = express();
+import cookieParser from 'cookie-parser';
 
 app.use(cors());
+app.use(cookieParser());
 //parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
