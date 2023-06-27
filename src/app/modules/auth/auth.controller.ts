@@ -4,6 +4,7 @@ import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
 import { AuthService } from './auth.services';
 import config from '../../../config';
+import { IRefreshTokenResponse } from './auth.interface';
 
 const loginUser = catchAsync(async (req: Request, res: Response) => {
   const { ...loginData } = req.body;
@@ -11,6 +12,7 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
 
   const { refreshToken, ...others } = result;
 
+  // set refresh token into cookie
   const cookieOptions = {
     secure: config.env === 'production',
     httpOnly: true,
@@ -27,8 +29,9 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
 });
 
 const refreshToken = catchAsync(async (req: Request, res: Response) => {
-  const { refreshTokenData } = req.cookies;
-  const result = await AuthService.refreshToken(refreshTokenData);
+  const { refreshToken } = req.cookies;
+
+  const result = await AuthService.refreshToken(refreshToken);
 
   const cookieOptions = {
     secure: config.env === 'production',
@@ -37,7 +40,7 @@ const refreshToken = catchAsync(async (req: Request, res: Response) => {
 
   res.cookie('refreshToken', refreshToken, cookieOptions);
 
-  sendResponse(res, {
+  sendResponse<IRefreshTokenResponse>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'User logged in successfully',

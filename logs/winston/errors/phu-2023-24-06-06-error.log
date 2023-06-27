@@ -1,0 +1,2 @@
+Sat Jun 24 2023, 6:45:19 [Arman_dev] error: Attempted illegal state transition from [TRANSACTION_ABORTED] to [TRANSACTION_COMMITTED]
+Sat Jun 24 2023, 6:47:34 [Arman_dev] error: Attempted illegal state transition from [TRANSACTION_COMMITTED] to [TRANSACTION_ABORTED]

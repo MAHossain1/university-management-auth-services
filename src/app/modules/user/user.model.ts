@@ -74,6 +74,14 @@ userSchema.statics.isUserExist = async function (
   );
 };
 
+userSchema.statics.isPasswordMatched = async function (
+  givenPassword: string,
+  savedPassword: string
+): Promise<boolean> {
+  const isMatched = await bcrypt.compare(givenPassword, savedPassword);
+  return isMatched;
+};
+
 userSchema.pre('save', async function (next) {
   const saltRounds = Number(config.bcrypt_salt_rounds);
   const hashedPassword = await bcrypt.hash(this.password, saltRounds);

@@ -1,7 +1,11 @@
 import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 import { User } from '../user/user.model';
-import { ILoginUser, ILoginUserResponse } from './auth.interface';
+import {
+  ILoginUser,
+  ILoginUserResponse,
+  IRefreshTokenResponse,
+} from './auth.interface';
 import config from '../../../config';
 import { Secret } from 'jsonwebtoken';
 import { jwtHelpers } from '../../../helpers/jwtHelpers';
@@ -14,15 +18,13 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
 
   const isUserExist = await User.isUserExist(id);
 
-  User.isUserExist(id);
-
   if (!isUserExist) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
   }
 
   if (
-    isUserExist?.password &&
-    !User.isPasswordMatched(password, isUserExist?.password)
+    isUserExist.password &&
+    !(await User.isPasswordMatched(password, isUserExist.password))
   ) {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Password is incorrect');
   }
@@ -47,11 +49,41 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   };
 };
 
-// const refreshToken = async (token: string) => {};
+const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
+  // verify token
+  let verifiedToken = null;
+  try {
+    verifiedToken = jwtHelpers.verifyToken(
+      token,
+      config.jwt.refresh_secret as Secret
+    );
+  } catch (err) {
+    throw new ApiError(httpStatus.FORBIDDEN, 'Invalid Refresh Token');
+  }
+
+  const { userId } = verifiedToken;
+
+  // Checking deleted user's refresh token
+  const isUserExist = await User.isUserExist(userId);
+  if (!isUserExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
+  }
+
+  // generate new token
+  const newAccessToken = jwtHelpers.createToken(
+    { id: isUserExist.id, role: isUserExist.role },
+    config.jwt.secret as Secret,
+    config.jwt.expires_in as string
+  );
+
+  return {
+    accessToken: newAccessToken,
+  };
+};
 
 export const AuthService = {
   loginUser,
-  // refreshToken,
+  refreshToken,
 };
 
 // User.amarMethod --> StaticMethod
